@@ -8,21 +8,6 @@
                 </a>
             </div>
 
-            {{-- Hamburger Button --}}
-            <div class="flex md:hidden">
-                <button type="button" class="text-white" id="hamburgerButton"
-                    aria-expanded="{{ $expanded ? 'true' : 'false' }}" aria-label="Toggle menu">
-                    {{-- Hamburger Icon --}}
-                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" id="hamburgerIcon">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"
-                            id="closeIcon" class="hidden" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16"
-                            id="menuIcon" />
-                    </svg>
-                </button>
-            </div>
-
             {{-- Desktop Navigation --}}
             <nav class="hidden md:flex md:space-x-10 lg:space-x-12">
                 <x-custom-link href="/"
@@ -64,68 +49,4 @@
             </div>
         </div>
     </div>
-
-    {{-- Mobile Navigation --}}
-    <nav class="{{ $expanded ? 'block' : 'hidden' }} md:hidden space-y-4 p-4 bg-black">
-        <x-custom-link href="/" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            Home
-        </x-custom-link>
-        <x-custom-link href="/about" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            About
-        </x-custom-link>
-        <x-custom-link href="/pricing" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            Pricing
-        </x-custom-link>
-        <x-custom-link href="/contact" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            Contact
-        </x-custom-link>
-        <x-custom-link href="/bookingform" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            Apply Now
-        </x-custom-link>
-
-        {{-- Profile Link for Logged-in Users --}}
-        <x-custom-link href="{{ route('profile') }}" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            My Profile
-        </x-custom-link>
-
-        {{-- Logout Button --}}
-        <form method="POST" action="{{ route('logout') }}" class="block">
-            <button type="submit" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block w-full text-left">
-                Logout
-            </button>
-        </form>
-
-        {{-- Show Login Button for Guests --}}
-        <x-custom-link href="/login" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            Login
-        </x-custom-link>
-
-        {{-- Show Sign-Up Button for Guests --}}
-        <x-custom-link href="/register" class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white block">
-            Sign Up
-        </x-custom-link>
-    </nav>
-    </div>
 </header>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const button = document.getElementById("user-menu-button");
-        const menu = document.getElementById("user-menu");
-
-        if (!button || !menu) return; // Prevent errors if elements are missing
-
-        button.addEventListener("click", function() {
-            menu.classList.toggle("hidden");
-        });
-
-        document.addEventListener("click", function(event) {
-            if (
-                !button.contains(event.target) &&
-                !menu.contains(event.target)
-            ) {
-                menu.classList.add("hidden");
-            }
-        });
-    });
-</script>
